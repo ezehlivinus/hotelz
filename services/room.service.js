@@ -60,9 +60,6 @@ class RoomService {
         },
         {
           size: { $regex: filter?.search, $options: 'i' }
-        },
-        {
-          price: { $regex: filter?.search, $options: 'i' }
         }
       ]
     };
