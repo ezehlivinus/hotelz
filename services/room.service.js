@@ -21,6 +21,7 @@ class RoomService {
   }
 
   async find(filter = {}) {
+    // make a deep copy of the filter object
     const _filter = structuredClone(filter);
     // if someone is filtering by room type
     if (filter?.roomType) {
