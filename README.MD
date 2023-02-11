@@ -8,14 +8,14 @@
 - start the server in development by running: `npm run dev` and read the terminal output to make sure that the server is running and the database is connected properly
 
 ## For you
-- Some endpoint has been created
-- Some was created and commented out it controllers has NOT been implemented yet. You can try and finish it off along with it services
-- Documentation: document the API using postman for your frontend to use it. Or you can just use markdown file.
+- Some endpoint (routes) and it's controllers and services has been created
+- Some was declared and was commented out, ...their controllers and services has NOT been implemented yet. You can try and finish it off.
+- Documentation: document the API using postman for your frontend devs to use it. Or you can just use markdown file.
 
 ## The App url
 - localhost:3000/api/v1/rooms
 - localhost:3000/api/v1/room-types
-- NB: Your port above may differ from your own port
+- NB: Your port above may differ from this port
 
 ### Sample request and response
 
