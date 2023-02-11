@@ -27,7 +27,7 @@ class RoomController {
 
     // we want to filter
     const filter = {};
-    if (!req?.query.search && !_.isEmpty(req.query)) {
+    if (!req?.query?.search && !_.isEmpty(req.query)) {
       Object.assign(filter, req?.query);
     }
 
