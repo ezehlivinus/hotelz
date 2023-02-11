@@ -1,5 +1,10 @@
-module.exports = (error, req, res, next) => {
+const logger = require('pino')();
 
-  next(error);
-  return res.status(500).send(data);
+module.exports = (error, req, res, next) => {
+  logger.error(error);
+
+  return res.status(500).send({
+    success: false,
+    message: error.message
+  });
 };

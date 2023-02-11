@@ -1,5 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
-const { RoomType } = require('./room-types.model');
 
 const roomSchema = new mongoose.Schema({
   name: {
@@ -27,6 +28,14 @@ const roomSchema = new mongoose.Schema({
     required: true
   }
 }, { timestamps: true });
+
+roomSchema.set('toJSON', {
+  versionKey: false,
+
+  transform(doc, ret) {
+    delete ret.__v;
+  }
+});
 
 const Room = mongoose.model('Room', roomSchema);
 
