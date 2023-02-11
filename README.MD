@@ -1,0 +1,86 @@
+
+## Installation
+- clone the repository
+- install the dependencies: using `npm install`
+- create a new file named `.env` in root folder of the project.
+- Copy and paste the content of `.env.example` into `.env` and filling the value.
+- You are advice to use atlas for the `DATABASE_URL` key but local database url is fine
+- start the server in development by running: `npm run dev` and read the terminal output to make sure that the server is running and the database is connected properly
+
+## For you
+- Some endpoint has been created
+- Some was created and commented out it controllers has NOT been implemented yet. You can try and finish it off along with it services
+- Documentation: document the API using postman for your frontend to use it. Or you can just use markdown file.
+
+## The App url
+- localhost:3000/api/v1/rooms
+- localhost:3000/api/v1/room-types
+- NB: Your port above may differ from your own port
+
+### Sample request
+- creating a new room type
+```json
+endpoint: localhost:3000/api/v1/room-types
+method: POST
+{
+  "codeName": "silver"
+}
+
+```
+
+- creating a new room
+```json
+endpoint: localhost:3000/api/v1/rooms
+method: POST
+{
+  "roomType": "63e6c0767734b38b983d5aeb",
+  "price": 200,
+  "name": "uba-unn"
+}
+
+// sample response
+{
+  "success": true,
+  "message": "Room created successfully",
+  "data": {
+    "name": "unn-unn",
+    "price": 200,
+    "size": "small",
+    "roomType": "63e6c05b7734b38b983d5ae7",
+    "_id": "63e6c5fc453e89b329bdfb2c",
+    "createdAt": "2023-02-10T22:32:28.502Z",
+    "updatedAt": "2023-02-10T22:32:28.502Z",
+    "__v": 0
+  }
+}
+```
+
+- making a search
+```json
+endpoint: localhost:3000/api/v1/rooms?search=uba
+Method: GET
+
+// sample response
+{
+  "success": true,
+  "message": "Rooms search successfully",
+  "data": [
+    {
+      "_id": "63e6c622453e89b329bdfb2f",
+      "name": "uba-unn",
+      "price": 200,
+      "size": "small",
+      "roomType": {
+        "_id": "63e6c0767734b38b983d5aeb",
+        "codeName": "silver",
+        "createdAt": "2023-02-10T22:08:54.738Z",
+        "updatedAt": "2023-02-10T22:08:54.738Z",
+        "__v": 0
+      },
+      "createdAt": "2023-02-10T22:33:06.574Z",
+      "updatedAt": "2023-02-10T22:33:06.574Z",
+      "__v": 0
+    }
+  ]
+}
+```
