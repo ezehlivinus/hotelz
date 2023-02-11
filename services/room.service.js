@@ -40,7 +40,7 @@ class RoomService {
 
     const rooms = await Room.find(_filter)
       .populate({
-        path: 'roomType', // this is the room field on Room collection
+        path: 'roomType', // this is the room type field on Room collection
         model: 'RoomType', // the model name that room.roomType is associated with or reference to
         select: 'id codeName' // when populating select only the id and name of the parent
       });
