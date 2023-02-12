@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable class-methods-use-this */
+const _ = require('lodash');
 const { Room } = require('../models/room.model');
 const roomTypeService = require('./room-type.service');
 
@@ -21,25 +22,7 @@ class RoomService {
   }
 
   async find(filter = {}) {
-    // make a deep copy of the filter object
-    const _filter = structuredClone(filter);
-    // if someone is filtering by room type
-    if (filter?.roomType) {
-      // find the room type, b/c we need its id
-      const existingRoomType = await roomTypeService.findOne({
-        codeName: filter.roomType
-      });
-
-      // if something was found
-      if (existingRoomType) {
-        // store the filter.roomType, this because that is the fields name in Room model
-        // this makes it to be part of the filter query
-        // Yes: someone cannot type id by him/her self
-        _filter.roomType = existingRoomType?._id;
-      }
-    }
-
-    const rooms = await Room.find(_filter)
+    const rooms = await Room.find(filter)
       .populate({
         path: 'roomType', // this is the room type field on Room collection
         model: 'RoomType', // the model name that room.roomType is associated with or reference to
@@ -50,20 +33,66 @@ class RoomService {
   }
 
   async search(filter = {}) {
-    const searchTerm = {
-      // we are using the or operator to search the two fields below
-      $or: [
-        {
-          name: {
-            $regex: filter?.search,
-            $options: 'i'
-          }
-        },
-        {
-          size: { $regex: filter?.search, $options: 'i' }
+    // begin: handle price case
+    const priceQuery = {};
+    if (filter?.minPrice) {
+      priceQuery.prize = { $gte: filter?.minPrice };
+    }
+
+    if (filter?.maxPrice) {
+      priceQuery.prize = {
+        $gte: filter?.minPrice,
+        $lte: filter?.maxPrice
+      };
+    }
+
+    // end handle price case
+    // begin handle room type case
+    let roomTypesIds;
+
+    if (filter?.roomType) {
+      // make a search query for room type
+      const searchRoomTypeQuery = {
+        codeName: {
+          $regex: filter?.roomType,
+          $options: 'i'
         }
-      ]
+      };
+
+      const searchedRoomTypes = await roomTypeService.list(searchRoomTypeQuery);
+
+      // if something was found
+      if (!_.isEmpty(searchedRoomTypes)) {
+        // pick out all the room type identifiers (ids) that was found
+        roomTypesIds = searchedRoomTypes.map((rooType) => rooType._id);
+      }
+    }
+
+    const searchTerm = {
+      // we are using the or operator to search all the fields
+      $or: []
     };
+
+    if (filter?.search) {
+      searchTerm.$or.push({
+        codeName: {
+          $regex: filter?.search,
+          $options: 'i'
+        }
+      });
+    }
+
+    // add price query if it not empty
+    if (!_.isEmpty(priceQuery)) {
+      searchTerm.$or.push(priceQuery);
+    }
+
+    // if roomTypesIds is not empty, it means we found something
+    if (!_.isEmpty(roomTypesIds)) {
+      searchTerm.$or.push({
+        roomType: { $in: roomTypesIds }
+      });
+    }
 
     const result = await Room.find(searchTerm).populate({
       path: 'roomType',

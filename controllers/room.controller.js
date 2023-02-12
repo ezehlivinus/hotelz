@@ -25,13 +25,7 @@ class RoomController {
       });
     }
 
-    // we want to filter
-    const filter = {};
-    if (!req?.query?.search && !_.isEmpty(req.query)) {
-      Object.assign(filter, req?.query);
-    }
-
-    const rooms = await roomService.find(filter);
+    const rooms = await roomService.find();
 
     if (_.isEmpty(rooms)) {
       return res.status(404).send({
