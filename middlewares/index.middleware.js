@@ -5,7 +5,7 @@ const cors = require('cors');
 const asyncError = require('./errors.middleware');
 const indexRoutes = require('../routes/index.routes');
 
-require('../config/database')();
+require('../config/database.config')();
 
 module.exports = (app) => {
   app.use(morgan('dev'));
