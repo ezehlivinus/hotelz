@@ -5,7 +5,7 @@ exports.CreateRoomSchema = Joi.object({
     .trim(),
   roomType: Joi.string().hex().trim().required()
     .length(24),
-  prize: Joi.number().required().min(1)
+  price: Joi.number().required().min(1)
 });
 
 exports.UpdateRoomSchema = Joi.object({
@@ -13,7 +13,7 @@ exports.UpdateRoomSchema = Joi.object({
     .trim(),
   roomType: Joi.string().hex().trim().optional()
     .length(24),
-  prize: Joi.number().optional().min(1)
+  price: Joi.number().optional().min(1)
 });
 
 exports.RoomQueryParamsSchema = Joi.object({

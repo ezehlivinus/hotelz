@@ -36,11 +36,11 @@ class RoomService {
     // begin: handle price case
     const priceQuery = {};
     if (filter?.minPrice) {
-      priceQuery.prize = { $gte: filter?.minPrice };
+      priceQuery.price = { $gte: filter?.minPrice };
     }
 
     if (filter?.maxPrice) {
-      priceQuery.prize = {
+      priceQuery.price = {
         $gte: filter?.minPrice,
         $lte: filter?.maxPrice
       };
