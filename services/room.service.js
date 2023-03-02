@@ -75,7 +75,7 @@ class RoomService {
 
     if (filter?.search) {
       searchTerm.$or.push({
-        codeName: {
+        name: {
           $regex: filter?.search,
           $options: 'i'
         }
