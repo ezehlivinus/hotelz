@@ -44,7 +44,15 @@ class RoomController {
   // get one room
   // async findById(req, res) { }
 
-  // async update(req, res) { }
+  async update(req, res) {
+    const updatedRoom = await roomService.update(req.params.id, req.body);
+
+    return res.status(200).send({
+      success: true,
+      message: 'Room updated successfully.',
+      data: updatedRoom
+    });
+  }
 
   // async delete(req, res) { }
 }

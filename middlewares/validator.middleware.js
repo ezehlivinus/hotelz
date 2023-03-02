@@ -20,7 +20,7 @@ const validator = (schema, source = 'body') => async (req, res, next) => {
 
     if (isPatternError) {
       // const shownError = 'Custom message for pattern errors';
-      // // This helps to the actual error message
+      // // This helps to the actisPatternErrorual error message
       // logger.error('', { shownError, error });
       // return res.status(400).send({
       //   success: false,

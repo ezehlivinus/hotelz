@@ -81,7 +81,7 @@ class RoomService {
         }
       });
     }
-
+    
     // add price query if it not empty
     if (!_.isEmpty(priceQuery)) {
       searchTerm.$or.push(priceQuery);
@@ -100,6 +100,15 @@ class RoomService {
     });
 
     return result;
+  }
+
+  async update(id, update) {
+    const updatedRoom = await Room.findByIdAndUpdate(id, update, {
+      runValidators: true,
+      new: true
+    });
+
+    return updatedRoom;
   }
 }
 

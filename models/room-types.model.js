@@ -6,10 +6,11 @@ const roomTypeSchema = new mongoose.Schema({
   codeName: {
     type: String,
     required: true,
-    minlength: 3,
+    // minlength: 3,
     maxlength: 100,
     unique: true,
-    trim: true
+    lowercase: true
+    // trim: true
   }
 }, { timestamps: true });
 

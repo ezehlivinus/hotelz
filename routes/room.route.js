@@ -1,7 +1,7 @@
 const express = require('express');
 const roomController = require('../controllers/room.controller');
 const validator = require('../middlewares/validator.middleware');
-const { CreateRoomSchema, RoomQueryParamsSchema } = require('../schemas/room.schema');
+const { CreateRoomSchema, RoomQueryParamsSchema, UpdateRoomSchema } = require('../schemas/room.schema');
 
 const roomRouter = express.Router();
 
@@ -15,7 +15,9 @@ roomRouter.get('/', [
 
 // roomRouter.get('/:id', roomController.findById);
 
-// roomRouter.put('/:id', roomController.update);
+roomRouter.put('/:id', [
+  validator(UpdateRoomSchema)
+], roomController.update);
 
 // roomRouter.delete('/:id', roomController.delete);
 
