@@ -81,7 +81,7 @@ class RoomService {
         }
       });
     }
-    
+
     // add price query if it not empty
     if (!_.isEmpty(priceQuery)) {
       searchTerm.$or.push(priceQuery);

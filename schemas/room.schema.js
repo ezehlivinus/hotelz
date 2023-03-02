@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 exports.CreateRoomSchema = Joi.object({
-  codeName: Joi.string().min(3).max(100).required()
+  name: Joi.string().min(3).max(100).required()
     .trim(),
   roomType: Joi.string().hex().trim().required()
     .length(24),
@@ -9,7 +9,7 @@ exports.CreateRoomSchema = Joi.object({
 });
 
 exports.UpdateRoomSchema = Joi.object({
-  codeName: Joi.string().min(3).max(100).optional()
+  name: Joi.string().min(3).max(100).optional()
     .trim(),
   roomType: Joi.string().hex().trim().optional()
     .length(24),

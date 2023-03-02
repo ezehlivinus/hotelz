@@ -19,13 +19,7 @@ const validator = (schema, source = 'body') => async (req, res, next) => {
     const isPatternError = type === 'string.pattern.base' || type.startsWith('string.pattern');
 
     if (isPatternError) {
-      // const shownError = 'Custom message for pattern errors';
-      // // This helps to the actisPatternErrorual error message
-      // logger.error('', { shownError, error });
-      // return res.status(400).send({
-      //   success: false,
-      //   message: shownError
-      // });
+      // handle joi pattern errors
     }
 
     return res.status(400).send({
