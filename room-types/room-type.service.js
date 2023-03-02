@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-const { RoomType } = require('../models/room-types.model');
+const { RoomType } = require('./room-types.model');
 
 class RoomTypeService {
   async create(newRoomTypeData) {

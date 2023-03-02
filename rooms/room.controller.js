@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 const _ = require('lodash');
 
-const roomService = require('../services/room.service');
+const roomService = require('./room.service');
 
 class RoomController {
   async create(req, res) {

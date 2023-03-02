@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const asyncError = require('./errors.middleware');
-const indexRoutes = require('../routes/index.routes');
+const indexRoutes = require('../routes/app.routes');
 
 require('../config/database.config')();
 

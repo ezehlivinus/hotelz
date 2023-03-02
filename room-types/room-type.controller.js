@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-const roomTypeService = require('../services/room-type.service');
+const roomTypeService = require('./room-type.service');
 
 class RoomTypeController {
   async create(req, res) {

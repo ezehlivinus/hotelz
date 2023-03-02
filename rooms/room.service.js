@@ -2,8 +2,8 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable class-methods-use-this */
 const _ = require('lodash');
-const { Room } = require('../models/room.model');
-const roomTypeService = require('./room-type.service');
+const { Room } = require('./room.model');
+const roomTypeService = require('../room-types/room-type.service');
 
 class RoomService {
   async create(newRoomData) {
