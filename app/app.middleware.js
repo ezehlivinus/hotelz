@@ -2,10 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const asyncError = require('./errors.middleware');
-const indexRoutes = require('../routes/app.routes');
+const asyncError = require('./common/errors.common');
+const indexRoutes = require('./app.routes');
 
-require('../config/database.config')();
+require('./config/database.config')();
 
 module.exports = (app) => {
   app.use(morgan('dev'));

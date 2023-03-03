@@ -1,5 +1,5 @@
-const roomTypeRouter = require('../room-types/room-type.route');
-const roomRouter = require('../rooms/room.route');
+const roomTypeRouter = require('./room-types/room-type.route');
+const roomRouter = require('./rooms/room.route');
 
 const basePath = '/api/v1';
 

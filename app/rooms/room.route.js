@@ -1,6 +1,6 @@
 const express = require('express');
 const roomController = require('./room.controller');
-const validator = require('../middlewares/validator.middleware');
+const validator = require('../common/validator.common');
 const { CreateRoomSchema, RoomQueryParamsSchema, UpdateRoomSchema } = require('./room.schema');
 
 const roomRouter = express.Router();

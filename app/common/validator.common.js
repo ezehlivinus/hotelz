@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-underscore-dangle */
 const _ = require('lodash');
 
 const validator = (schema, source = 'body') => async (req, res, next) => {

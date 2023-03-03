@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const logger = require('pino')();
 
 module.exports = (error, req, res, next) => {
